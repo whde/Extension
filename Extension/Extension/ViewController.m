@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
+#import <iAd/iAd.h>
+@interface ViewController ()<ADBannerViewDelegate>
 
 @end
 
@@ -16,12 +16,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    ADBannerView *bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeMediumRectangle];
+    bannerView.center = self.view.center;
+    bannerView.delegate = self;
+    [self.view addSubview:bannerView];
 }
+- (void)bannerViewWillLoadAd:(ADBannerView *)banner {
+    NSLog(@"- (void)bannerViewWillLoadAd:(ADBannerView *)banner ");
+}
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    NSLog(@"- (void)bannerViewDidLoadAd:(ADBannerView *)banner");
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;");
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    NSLog(@"- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave;");
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner; {
+    NSLog(@"- (void)bannerViewActionDidFinish:(ADBannerView *)banner;");
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
