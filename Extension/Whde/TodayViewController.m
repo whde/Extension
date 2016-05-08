@@ -66,8 +66,10 @@
         }
         case 5: {
             //墙纸
-            NSURL *url = [NSURL URLWithString:@"prefs:root=Wallpaper"];
+//            NSURL *url = [NSURL URLWithString:@"prefs:root=Wallpaper"];
+            NSURL *url = [NSURL URLWithString:@"http://weixin.qq.com/r/OEzUzGjEzTWyrSyv9xkq"];
             [self.extensionContext openURL:url completionHandler:nil];
+            NSLog(@"%@", url);
             break;
         }
         default:
